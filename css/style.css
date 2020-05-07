@@ -71,15 +71,6 @@ body {
   animation-name: moveInLeft;
   animation-duration: 2s;
   animation-timing-function: ease-out;
-
-  /* text-shadow: 0 -1px 0 #999, 0 1px 0 #000, 1px 0 0 #000, -1px 0 0 #999,
-    -1px 1px 0 #999, -1px -1px 0 #999, 1px 1px 0 #000, 1px -1px 0 #999,
-    0 0 0 #000, 2px 2px 0 #000, 2px 0 0 #000, 0 2px 0 #000; 
-
-  text-shadow: 0 -1px 0 #000, 0 1px 0 #000, 1px 0 0 #000, -1px 0 0 #000,
-    -1px 1px 0 #000, -1px -1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000,
-    0 0 0 #000, 2px 2px 0 #000, 3px 3px 0 #000, 2px 0 0 #000, 3px 1px 0 #000,
-    4px 2px 0 #000, 0 2px 0 #000, 1px 3px 0 #000; */
 }
 .remove-letter-space {
   letter-spacing: 0; /* Did myself */
@@ -123,6 +114,17 @@ body {
   }
 }
 
+@keyframes moveUpBtn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .btn:link,
 .btn:visited {
   text-transform: uppercase;
@@ -131,6 +133,7 @@ body {
   display: inline-block;
   border-radius: 100px;
   transition: all 0.2s;
+  position: relative;
 }
 
 .btn:hover {
@@ -146,4 +149,34 @@ body {
 .btn-white {
   background-color: #fff;
   color: #777;
+}
+
+.btn::after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all 0.4s;
+}
+
+.btn-white::after {
+  background-color: #fff;
+}
+
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+
+.btn-animated {
+  animation-name: moveUpBtn;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  animation-delay: 0.75s;
+  animation-fill-mode: backwards;
 }
