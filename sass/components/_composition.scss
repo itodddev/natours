@@ -31,7 +31,7 @@
     }
   }
 
-  // When you come into the COMPOSITION area and your not over an image scale the other images down
+  // When you come into the COMPOSITION area and your not over an image scale the other images down.
   &:hover &__photo:not(:hover) {
     transform: scale(0.95);
   }
