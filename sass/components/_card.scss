@@ -1,0 +1,42 @@
+.card {
+  perspective: 150rem;
+  -moz-perspective: 150rem;
+  position: relative;
+  height: 50rem; // needed because parent height collapses because of absolute positioning, card will be janky when hovered
+
+  &__side {
+    height: 50rem;
+    transition: all 0.8s ease; // ease transition timing, makes smoother
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; // needed because absolute positioning shrinks to content size
+    backface-visibility: hidden; // needed so backface isnt visible
+    border-radius: 3px;
+    box-shadow: 0 1.5rem 4rem $shadow-light;
+
+    &--front {
+      background-color: $color-white;
+    }
+
+    &--back {
+      transform: rotateY(180deg); // Already rotated at start
+
+      &-1 {
+        background-image: linear-gradient(
+          to right bottom,
+          $color-secondary-light,
+          $color-secondary-dark
+        );
+      }
+    }
+  }
+
+  &:hover &__side--front {
+    transform: rotateY(-180deg);
+  }
+
+  &:hover &__side--back {
+    transform: rotateY(0);
+  }
+}
