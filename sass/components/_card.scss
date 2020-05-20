@@ -31,6 +31,20 @@
           $color-secondary-dark
         );
       }
+      &-2 {
+        background-image: linear-gradient(
+          to right bottom,
+          $color-primary-light,
+          $color-primary-dark
+        );
+      }
+      &-3 {
+        background-image: linear-gradient(
+          to right bottom,
+          $color-tertiary-light,
+          $color-tertiary-dark
+        );
+      }
     }
   }
 
@@ -57,6 +71,24 @@
           $color-secondary-dark
         ),
         url(../img/nat-5.jpg); // only has to move up one level because it will be compiled to .css and put in the css folder
+    }
+    &--2 {
+      // linear gradient over background image w/ blend
+      background-image: linear-gradient(
+          to right bottom,
+          $color-primary-light,
+          $color-primary-dark
+        ),
+        url(../img/nat-6.jpg); // only has to move up one level because it will be compiled to .css and put in the css folder
+    }
+    &--3 {
+      // linear gradient over background image w/ blend
+      background-image: linear-gradient(
+          to right bottom,
+          $color-tertiary-light,
+          $color-tertiary-dark
+        ),
+        url(../img/nat-7.jpg); // only has to move up one level because it will be compiled to .css and put in the css folder
     }
   }
 
@@ -85,6 +117,22 @@
         rgba($color-secondary-dark, 0.85)
       );
     }
+
+    &--2 {
+      background-image: linear-gradient(
+        to right bottom,
+        rgba($color-primary-light, 0.85),
+        rgba($color-primary-dark, 0.85)
+      );
+    }
+
+    &--3 {
+      background-image: linear-gradient(
+        to right bottom,
+        rgba($color-tertiary-light, 0.85),
+        rgba($color-tertiary-dark, 0.85)
+      );
+    }
   }
 
   &__details {
@@ -105,5 +153,30 @@
         }
       }
     }
+  }
+
+  // Back Side Styling
+  &__cta {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 90%; // add so button text fits and doesnt go to 2 lines
+    text-align: center; // was on price-box, but added to here because because btn wasnt centered
+    transform: translate(-50%, -50%); // centers abs positioned item
+  }
+
+  &__price-box {
+    color: $color-white;
+    margin-bottom: 8rem;
+  }
+
+  &__price-only {
+    font-size: 1.4;
+    text-transform: uppercase;
+  }
+
+  &__price-value {
+    font-size: 6rem;
+    font-weight: 100;
   }
 }
