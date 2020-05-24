@@ -25,6 +25,7 @@
     clip-path: circle(50% at 50% 50%); // Clips the 15x15 square to a circle
 
     transform: translateX(-3rem) skewX(12deg); // moves the text over 3rem from the shape to give it some distance
+    position: relative; // for the abs pos of the story__caption
   }
 
   &__text {
@@ -33,5 +34,35 @@
 
   &__img {
     height: 100%;
+    transform: translateX(-4rem) scale(1.4); // Center woman in circle and zoom in 140% on default
+    backface-visibility: hidden; // fix weird shape, not needed in newer browsers
+    transition: all 0.5s;
+  }
+
+  &__caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(
+      -50%,
+      20%
+    ); // 20% to move text lower so it can scroll up on hover
+    color: $color-white;
+    text-transform: uppercase;
+    font-size: 1.7rem;
+    text-align: center; // important
+    opacity: 0; // Hide text when not hovered
+    transition: all 0.5s;
+    backface-visibility: hidden; // fix shake at end of transition
+  }
+
+  &:hover &__caption {
+    opacity: 1;
+    transform: translate(-50%, -50%); // move up to center
+  }
+
+  &:hover &__img {
+    transform: translateX(-4rem) scale(1);
+    filter: blur(3px) brightness(80%);
   }
 }
