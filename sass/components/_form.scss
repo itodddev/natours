@@ -1,0 +1,57 @@
+.form {
+  &__group:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+
+  &__input {
+    font-size: 1.5rem;
+    font-family: inherit; // inputs dont receive the base font and color by default
+    color: inherit; // needed for input-placeholder color below
+    padding: 1.5rem 2rem;
+    border-radius: 2px;
+    background-color: rgba($color-white, 0.5);
+    border: none;
+    border-bottom: 3px solid transparent; // prevents input box jump on focus (see below)
+    width: 90%;
+    display: block; // moves label below
+
+    &:focus {
+      outline: none; // prevents blue focus border in chrome
+      box-shadow: 0 1rem 2rem rgba($color-black, 0.1);
+      border-bottom: 3px solid $color-primary;
+
+      &:invalid {
+        // orange border with input is not valid
+        border-bottom: 3px solid $color-secondary-dark;
+      }
+    }
+
+    &::-webkit-input-placeholder {
+      color: $color-grey-dark-2;
+    }
+
+    &::-moz-placeholder {
+      color: $color-grey-dark-2;
+    }
+  }
+
+  &__label {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-left: 2rem; // line up under placeholder, take care of 2rem padding in input box
+    margin-top: 0.7rem;
+    display: block; // make block so margins are respected
+    transition: all 0.4s;
+  }
+
+  &__input:placeholder-shown + &__label {
+    // :place-holder shown is when there in only placeholder in input, not valid when typing in input
+    // targeting label with adjacent sibling selector
+    // cant be inbedded in &__input because of the &__label so it needs to under .form
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(
+      -4rem
+    ); // places label up in text box (invisible) and animates down when typing in input
+  }
+}
