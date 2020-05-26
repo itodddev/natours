@@ -54,7 +54,6 @@
     color: $color-grey-light-1;
     border-top: 1px solid $color-grey-dark;
     padding-top: 2rem;
-    display: inline-block; // Without it the border-top will take up whole container, inline-block only takes up content width
 
     width: 80%; // these make the copyright paragraph looked center under logo
     float: right;
