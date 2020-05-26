@@ -14,6 +14,12 @@
     border-bottom: 3px solid transparent; // prevents input box jump on focus (see below)
     width: 90%;
     display: block; // moves label below
+    transition: all 0.3s;
+
+    &:required {
+      box-shadow: none; // needed to turn off red outline on Firefox when invalid
+      // https://stackoverflow.com/questions/5939341/firefox-4-is-there-a-way-to-remove-the-red-border-in-a-required-form-input
+    }
 
     &:focus {
       outline: none; // prevents blue focus border in chrome
@@ -53,5 +59,57 @@
     transform: translateY(
       -4rem
     ); // places label up in text box (invisible) and animates down when typing in input
+  }
+
+  // Custom Radio Buttons
+  &__radio-group {
+    width: 49%;
+    display: inline-block; // get them side-by-side in a row
+  }
+
+  &__radio-label {
+    font-size: $default-font-size;
+    cursor: pointer;
+    position: relative;
+    padding-left: 4rem;
+  }
+
+  &__radio-button {
+    height: 3rem;
+    width: 3rem;
+    border: 5px solid $color-primary;
+    border-radius: 50%;
+    display: inline-block; // needed because span (inline) and can't do h & w
+    position: absolute;
+    left: 0;
+    top: -0.5rem;
+
+    &::after {
+      // inner circle of radio button
+      content: ""; // all pseudo-elements need content
+      display: block;
+      height: 1.3rem;
+      width: 1.3rem;
+      background-color: $color-primary;
+      border-radius: 50%;
+      position: absolute; // its ok if parent is set to absolute, position just has to be set
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%); // center in outer circle
+      opacity: 0; // hide when not selected
+      transition: opacity 0.2s;
+    }
+  }
+
+  &__radio-input:checked ~ &__radio-label &__radio-button::after {
+    // for radio-input that is checked, use general sibling selector (could have used adjacent sibling selecto also)
+    // that will select the radio label then the radio-button is a child and select the after pseudo element
+    // and show inner circle
+    opacity: 1;
+  }
+
+  &__radio-input {
+    display: none; // Dont use visibility hidden, because old radio button is still there just hidden and will
+    // throw off alignment.  Display: none; old radio button is gone from the flow
   }
 }

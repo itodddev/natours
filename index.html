@@ -349,6 +349,42 @@
                   />
                   <label for="email" class="form__label">Email address</label>
                 </div>
+
+                <div class="form__group u-margin-bottom-medium">
+                  <div class="form__radio-group">
+                    <input
+                      type="radio"
+                      class="form__radio-input"
+                      id="small"
+                      name="group-size"
+                    />
+                    <!-- need to specify name so both are in same group -->
+                    <label for="small" class="form__radio-label">
+                      <span class="form__radio-button"></span>
+                      <!-- ^ custom radio button ^ -->
+                      Small tour group
+                    </label>
+                  </div>
+
+                  <div class="form__radio-group">
+                    <input
+                      type="radio"
+                      class="form__radio-input"
+                      id="large"
+                      name="group-size"
+                    />
+                    <label for="large" class="form__radio-label">
+                      <span class="form__radio-button"></span>
+                      <!-- ^ custom radio button ^ -->
+                      Large tour group
+                    </label>
+                  </div>
+                </div>
+
+                <div class="form__group">
+                  <!-- need a button in a form not an anchor link for submit -->
+                  <button class="btn btn--green">Next Step &rarr;</button>
+                </div>
               </form>
             </div>
           </div>
