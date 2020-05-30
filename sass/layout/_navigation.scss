@@ -13,6 +13,7 @@
     top: 6rem;
     right: 6rem;
     z-index: 2000;
+    box-shadow: 0 1rem 3rem rgba($color-black, 0.1);
   }
 
   &__background {
@@ -28,8 +29,7 @@
       $color-primary-dark
     );
     z-index: 1000;
-
-    transform: scale(80);
+    transition: transform 0.8s cubic-bezier(0.86, 0, 0.07, 1);
   }
 
   &__nav {
@@ -37,14 +37,19 @@
     width: 100%;
     position: fixed;
     top: 0;
-    right: 0;
+    left: 0;
     z-index: 1500;
+
+    opacity: 0; // hide navigation menu and background, don't know why not visibility: hidden
+    width: 0;
+    transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55); // all needed because anim width and opacity
   }
 
   &__list {
     @include center-vert-horz;
     list-style: none;
     text-align: center;
+    width: 100%; // prevents weird issue on right side of screen
   }
 
   &__item {
@@ -82,5 +87,15 @@
       color: $color-primary;
       transform: translateX(1rem); // slight move to the right
     }
+  }
+
+  // checkbox hack, click button label and background comes back
+  &__checkbox:checked ~ &__background {
+    transform: scale(80);
+  }
+
+  &__checkbox:checked ~ &__nav {
+    opacity: 1;
+    width: 100%;
   }
 }
