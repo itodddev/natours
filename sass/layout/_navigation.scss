@@ -14,6 +14,8 @@
     right: 6rem;
     z-index: 2000;
     box-shadow: 0 1rem 3rem rgba($color-black, 0.1);
+    text-align: center; // center 3 bars
+    cursor: pointer;
   }
 
   &__background {
@@ -97,5 +99,59 @@
   &__checkbox:checked ~ &__nav {
     opacity: 1;
     width: 100%;
+  }
+
+  // Menu Button 3 bar Icon
+  &__icon {
+    position: relative; // parent item
+    margin-top: 3.5rem;
+
+    &,          // common properties between 3 bars
+    &::before,
+    &::after {
+      width: 3rem;
+      height: 2px;
+      background-color: $color-grey-dark-3;
+      display: inline-block;
+    }
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      transition: all 0.2s;
+    }
+
+    &::before {
+      top: -0.8rem;
+    }
+    &::after {
+      top: 0.8rem;
+    }
+  }
+
+  &__button:hover &__icon::before {
+    top: -1rem;
+  }
+
+  &__button:hover &__icon::after {
+    top: 1rem;
+  }
+
+  // When button clicked select &__button (adj sibling) &__icon (child)
+  &__checkbox:checked + &__button &__icon {
+    background-color: transparent; // I had originally set height: 0, visibility & opacity dont work because
+    // ::before & ::after
+  }
+
+  &__checkbox:checked + &__button &__icon::before {
+    top: 0;
+    transform: rotate(135deg); // 3/4 rotation 45deg angle
+  }
+
+  &__checkbox:checked + &__button &__icon::after {
+    top: 0;
+    transform: rotate(-135deg);
   }
 }
