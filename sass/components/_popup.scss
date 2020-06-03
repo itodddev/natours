@@ -6,6 +6,9 @@
   top: 0;
   left: 0;
   z-index: 5000;
+  opacity: 0; // hides
+  visibility: hidden; // popup
+  transition: all 0.3s;
 
   &__content {
     @include center-vert-horz;
@@ -15,6 +18,13 @@
     box-shadow: 0 2rem 4rem rgba($color-black, 0.2);
     display: table; // parent of table cells
     overflow: hidden; // prevents the images from covering up border-radius
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+    //^ transform has to have all its properties in one statement
+    //  so you have to duplicate the transform from the mixin, the above statement overwrites
+    //  the one in the mixin with scale added for zoom effect
+    transition: all 0.5s 0.2s;
+    // the .2s is the delay (allows the black background to show then the content zooms in
   }
 
   &__left {
@@ -46,5 +56,37 @@
     -ms-hyphens: auto;
     -webkit-hyphens: auto;
     hyphens: auto; // auto add hyphens in text need <html lang="en">
+  }
+
+  // Open states
+  &:target {
+    // when anchor points to #popup, .popup is the target
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &:target &__content {
+    // Create a content zoom out effect when the popup becomes the target
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  &__close {
+    &:link,
+    &:visited {
+      color: $color-grey-dark;
+      position: absolute;
+      top: 2.5rem;
+      right: 2.5rem;
+      font-size: 3rem;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.2s;
+      line-height: 1; // text has a high line high, remove it
+    }
+
+    &:hover {
+      color: $color-primary;
+    }
   }
 }
