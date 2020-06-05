@@ -27,6 +27,8 @@ $breakpoint argument choices
 - tab-land
 - big-desktop
 
+ORDER: Base + typography > general layout + grid > page layout > com[ponents
+
 media queries dont use the root font size they use the browser font size
 so its best to use em's in media queries
 1em = 16px

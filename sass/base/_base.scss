@@ -37,4 +37,9 @@ html {
 
 body {
   box-sizing: border-box;
+  padding: 3rem; /* adds white border around entire page */
+
+  @include respond(tab-port) {
+    padding: 0; /* remove white border around entire page under 900px*/
+  }
 }
