@@ -1,5 +1,4 @@
 .story {
-  width: 75%;
   margin: 0 auto;
   box-shadow: 0 3rem 6rem rgba($color-black, 0.1);
   background-color: rgba(
@@ -11,6 +10,16 @@
   padding-left: 9rem; // Adds back the 3rem from the translateX below
   font-size: $default-font-size;
   transform: skewX(-12deg); // skews the story box
+
+  @include respond(tab-port) {
+    width: 100%;
+    padding: 4rem;
+    padding-left: 7rem; // Adds back the 3rem from the translateX below
+  }
+
+  @include respond(phone) {
+    transform: skewX(0);
+  }
 
   &__shape {
     width: 15rem;
@@ -29,10 +38,18 @@
 
     transform: translateX(-3rem) skewX(12deg); // moves the text over 3rem from the shape to give it some distance
     position: relative; // for the abs pos of the story__caption
+
+    @include respond(phone) {
+      transform: translateX(-3rem) skewX(0);
+    }
   }
 
   &__text {
     transform: skewX(12deg);
+
+    @include respond(phone) {
+      transform: skewX(0);
+    }
   }
 
   &__img {
