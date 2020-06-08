@@ -4,11 +4,22 @@
       rgba($color-primary-light, 0.8),
       rgba($color-primary-dark, 0.8)
     ),
-    url(../img/hero.jpg);
+    url(../img/hero-small.jpg); // if under 192dpi, load the standard res image
   background-size: cover;
   background-position: top;
   position: relative;
   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+
+  // 192dpi is Apple Retina, so if higher that 192dpi load the hires image
+  @media (min-resolution: 192dpi) and (min-width: 37.5em), (min-width: 125em) {
+    // comma read as "or"
+    // media queries better in em's 600/16 = 37.5em and 2000/16 = 125em
+    background-image: linear-gradient(
+        rgba($color-primary-light, 0.8),
+        rgba($color-primary-dark, 0.8)
+      ),
+      url(../img/hero.jpg);
+  }
 
   @include respond(tab-port) {
     clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
