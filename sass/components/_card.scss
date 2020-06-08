@@ -12,6 +12,7 @@
     top: 0;
     left: 0;
     width: 100%; // needed because absolute positioning shrinks to content size
+    -webkit-backface-visibility: hidden; // needed for safari
     backface-visibility: hidden; // needed so backface isnt visible
     border-radius: 3px;
     overflow: hidden; // used to show the border radius, card_picture will overflow and cover the border radius

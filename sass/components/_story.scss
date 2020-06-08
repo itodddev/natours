@@ -25,19 +25,25 @@
     width: 15rem;
     height: 15rem;
     float: left;
-    -webkit-shape-outside: circle(
-      50% at 50% 50%
-    ); // Sets the circle bountry that the text floats around
-    shape-outside: circle(
-      50% at 50% 50%
-    ); // Sets the circle bountry that the text floats around
-    -webkit-clip-path: circle(
-      50% at 50% 50%
-    ); // Clips the 15x15 square to a circle
-    clip-path: circle(50% at 50% 50%); // Clips the 15x15 square to a circle
-
     transform: translateX(-3rem) skewX(12deg); // moves the text over 3rem from the shape to give it some distance
     position: relative; // for the abs pos of the story__caption
+    overflow: hidden; // needed for older firefox that don't support clip-path - images are too big and overflow
+    border-radius: 50%; // makes round for older firefox, but doesn't have circle boundry
+
+    // for old firefox that doesnt support clip-path
+    @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+      -webkit-clip-path: circle(
+        50% at 50% 50%
+      ); // Clips the 15x15 square to a circle
+      clip-path: circle(50% at 50% 50%); // Clips the 15x15 square to a circle
+      -webkit-shape-outside: circle(
+        50% at 50% 50%
+      ); // Sets the circle bountry that the text floats around
+      shape-outside: circle(
+        50% at 50% 50%
+      ); // Sets the circle bountry that the text floats around
+      border-radius: none;
+    }
 
     @include respond(phone) {
       transform: translateX(-3rem) skewX(0);
