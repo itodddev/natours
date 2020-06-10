@@ -43,3 +43,9 @@ body {
     padding: 0; /* remove white border around entire page under 900px*/
   }
 }
+
+// changes selected color on the page
+::selection {
+  background-color: $color-primary;
+  color: $color-white;
+}

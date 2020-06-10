@@ -181,7 +181,9 @@
     font-weight: 100;
   }
 
-  @include respond(tab-port) {
+  // @include respond(tab-port) {
+  @media only screen and (max-width: 56.25em), only screen and (hover: none) {
+    // For larger touch devices that cant hover (hover: none) (ipad pro, etc), flips card so button is shown
     height: auto; // height not needed because its one side
     border-radius: 3px; // moved from front of card to whole card
     background-color: $color-white;
